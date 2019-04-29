@@ -80,6 +80,10 @@ main {
   max-width: 50em;
 }
 
+ul {
+  list-style: none;
+}
+
 /* GRID */
 
 .row {

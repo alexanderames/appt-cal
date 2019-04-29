@@ -2,12 +2,14 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "date-fns": "^1.29.0",
+    "moment": "^2.24.0",
     "react": "^16.3.2",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.3.2",
     "react-redux": "^7.0.3",
     "react-scripts": "1.1.4",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "sfcookies": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
