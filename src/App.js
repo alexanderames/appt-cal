@@ -1,9 +1,8 @@
 import React from "react";
 import Calendar from "./components/Calendar";
 import "./App.css";
-import { connect } from 'react-redux';
-import { addAppt } from './actions';
-
+import {connect} from 'react-redux';
+import {addAppt} from './actions';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,34 +14,49 @@ class App extends React.Component {
   addAppt() {
     this.props.addAppt(this.state.text);
   }
+  renderAppts() {
+    const { appointments } = this.props;
+    return (<ul>
+      {
+        appointments.map(appointment => {
+          return (<li key={appointment.id}>
+            {appointment.text}
+          </li>)
+        })
+      }
+    </ul>)
+  }
 
   render() {
-    return (
-      <div className="App">
-        <header>
-          <div id="logo">
-            <span className="icon">date_range</span>
-            <span>
-              appointment<b>calendar</b>
-            </span>
+    return (<div className="App">
+      <header>
+        <div id="logo">
+          <span className="icon">date_range</span>
+          <span>
+            appointment<b>calendar</b>
+          </span>
+        </div>
+      </header>
+      <main>
+        <div className="col col-center">
+          <div>
+            { this.renderAppts() }
           </div>
-        </header>
-        <main>
-          <div className="col col-center">
-            <input
-            onChange={event => this.setState({text: event.target.value})}
-            placeholder="type appointment"
-            />
-            <button
-            onClick={() => this.addAppt()}
-            > +
-            </button>
-          </div>
-          <Calendar />
-        </main>
-      </div>
-    );
+          <input onChange={event => this.setState({text: event.target.value})} placeholder="type appointment"/>
+          <button onClick={() => this.addAppt()}>
+            +
+          </button>
+        </div>
+        <Calendar/>
+      </main>
+    </div>);
   }
 }
 
-export default connect(null, { addAppt })(App);
+function mapStateToProps(state) {
+	return {
+		appointments: state
+	}
+}
+
+export default connect(mapStateToProps, {addAppt})(App);

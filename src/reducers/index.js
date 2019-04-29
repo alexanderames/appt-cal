@@ -12,7 +12,6 @@ const appointments = (state = [], action) => {
   switch (action.type) {
     case ADD_APPT:
       appointments = [...state, appointment(action)];
-      console.log('appointments:', appointments);
       return appointments;
     default:
       return state;
